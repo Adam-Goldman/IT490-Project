@@ -1,10 +1,10 @@
-#!/usr/bin/php
 <?php
- 	ini_set('display_errors',1);
+	ini_set('display_errors',1);
         ini_set('display_startup_errors',1);
         error_reporting(-1);
 
-	function get_data($url)
+
+        function get_data($url)
         {
                 $ch = curl_init();
                 $timeout = 5;
@@ -15,30 +15,23 @@
                 curl_close($ch);
                 return $data;
         }
-
-	for ($x = 1; $x <= 10; $x++)
+	$games;
+//        $timeToSleep = 1;
+        for ($x = 1; $x <= 10; $x++)
         {
-               // $timeToSleep++;
-               // if($timeToSleep == 5)
-               // {
-                       // sleep(30);
-                       // $timeToSleep = 0;
-               // }
+//                $timeToSleep++;
+  //              if($timeToSleep == 5)
+    //            {
+      //                  sleep(30);
+        //                $timeToSleep = 0;
+          //      }
                 $json = 'http://www.giantbomb.com/api/game/3030-'.$x.'/?api_key=193e8694d3f76bad6edbce7452d3154ad8731a64&format=json&field_list=name';
                 $data = get_data($json);
                 $obj = json_decode($data);
                 $name = $obj->{'results'};
                 $game[$x] = $name->{'name'};
+                //print_r($obj);
         }
-	
 
-	$connection = new MongoClient("mongodb://testadmin:12adam12@ds041633.mongolab.com:41633/it420");
-
-	$db = $connection->selectDB("it420");
-	$gamename = $db->selectCollection('games');
-
-	$gamename->insert($game);
-	$connection->close();
 	var_dump($game);
-
 ?>
