@@ -7,11 +7,11 @@
 	$connection = new MongoClient("mongodb://testadmin:12adam12@ds041633.mongolab.com:41633/it420");
 
         $db = $connection->selectDB("it420");
-        $gamename = $db->users;
-	$doc = $gamename->find(array('username'=>'anthony'));
-	
-	while ( $doc->hasNext() )
+        $gamename = $db->games;
+	$owner = $gamename->find(array('owner' => 'agoldman'));
+    	while ( $owner->hasNext() )
 	{
-    		var_dump( $doc->getNext() );
+    		$tempArray = $owner->getNext();
 	}
+	print_r ( $tempArray['Titles'] );
 ?>

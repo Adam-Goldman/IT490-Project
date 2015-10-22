@@ -35,10 +35,8 @@
 	$connection = new MongoClient("mongodb://testadmin:12adam12@ds041633.mongolab.com:41633/it420");
 
 	$db = $connection->selectDB("it420");
-	$gamename = $db->selectCollection('games');
-
-	$gamename->insert($game);
+	$owner = $db->selectCollection('games');
+	$owner->insert(array('owner' => 'agoldman','Titles' => $game));
 	$connection->close();
-	var_dump($game);
 
 ?>
