@@ -4,6 +4,8 @@
         ini_set('display_startup_errors',1);
         error_reporting(-1);
 
+	$username;
+
 	$connection = new MongoClient("mongodb://testadmin:12adam12@ds041633.mongolab.com:41633/it420");
 
         $db = $connection->selectDB("it420");
@@ -13,5 +15,6 @@
 	{
     		$tempArray = $owner->getNext();
 	}
-	print_r ( $tempArray['Titles'] );
+	$stringGame = implode(" ", $tempArray['Titles']);
+	echo $stringGame;
 ?>
