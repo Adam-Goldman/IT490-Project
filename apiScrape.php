@@ -16,16 +16,16 @@
                 return $data;
         }
 	$games;
-//        $timeToSleep = 1;
+        $timeToSleep = 1;
         for ($x = 1; $x <= 10; $x++)
         {
-//                $timeToSleep++;
-  //              if($timeToSleep == 5)
-    //            {
-      //                  sleep(30);
-        //                $timeToSleep = 0;
-          //      }
-                $json = 'http://www.giantbomb.com/api/game/3030-'.$x.'/?api_key=193e8694d3f76bad6edbce7452d3154ad8731a64&format=json&field_list=name';
+                $timeToSleep++;
+                if($timeToSleep == 5)
+                {
+                        sleep(30);
+                        $timeToSleep = 0;
+                }
+                $json = 'http://www.giantbomb.com/api/game/3030-'.$x.'/?api_key=193e8694d3f76bad6edbce7452d3154ad8731a64&format=json&field_list=';
                 $data = get_data($json);
                 $obj = json_decode($data);
                 $name = $obj->{'results'};

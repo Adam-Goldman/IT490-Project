@@ -1,0 +1,27 @@
+#!/bin/bash
+
+sudo mkdir ~/temp/
+sudo mkdir ~/temp2/
+
+cd ~/temp/
+scp anthony@192.168.1.150:Archive_Server/BE_Server/$1 $1
+
+sudo tar -xvf $1
+
+sh moveThings.sh bundle.conf
+
+
+result=`python BEtest.py`
+
+if [ $result ]; then
+	sudo rm -r ~/temp/
+	sudo rm -r ~/temp2/
+	exit
+else
+	sh failscript.sh bundle.conf	
+	sudo rm -r ~/temp/
+	sudo rm -r ~/temp2/
+	exit
+fi
+
+

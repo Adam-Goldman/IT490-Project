@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scp $1 anthony@192.168.1.150:Archive_Server/BE_Server/

@@ -4,7 +4,7 @@ from MongoThing import MongoThing
 
 
 creds= pika.PlainCredentials('guest', 'guest')
-connection = pika.BlockingConnection(pika.ConnectionParameters( '127.0.0.1', 5672,'AMERICA', creds))
+connection = pika.BlockingConnection(pika.ConnectionParameters( '192.168.1.150', 5672,'AMERICA', creds))
 
 channel = connection.channel()
 
@@ -28,7 +28,7 @@ def on_request(ch, method, props, body):
 	result = json.loads(body)
 	print "Response from client: " + body
 	response = backEndThing(result)
-	
+	print response
 	ch.basic_publish(exchange='testExchange', 
 			routing_key='test.response', 
 			properties=pika.BasicProperties(correlation_id=

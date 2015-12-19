@@ -9,12 +9,11 @@
 	$connection = new MongoClient("mongodb://testadmin:12adam12@ds041633.mongolab.com:41633/it420");
 
         $db = $connection->selectDB("it420");
-        $gamename = $db->games;
-	$owner = $gamename->find(array('owner' => 'agoldman'));
+        $gamename = $db->games_description;
+	$owner = $gamename->find(array('name' => 'Bass Avenger'));
     	while ( $owner->hasNext() )
 	{
     		$tempArray = $owner->getNext();
 	}
-	$stringGame = implode(" ", $tempArray['Titles']);
-	echo $stringGame;
+	var_dump($owner);
 ?>
